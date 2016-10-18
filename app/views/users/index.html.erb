@@ -1,28 +1,28 @@
 
 
-<div class="container">
+
 	<h1>Users</h1>
-	
+
 
 	<table class="table">
 		<thead class="thead thead-default">
 			<tr>
-				<th>First Name</th>
-				<th>Last Name</th>
+				<th>Full Name</th>
 				<th>Email</th>
 				<th>Created at</th>
+				<th>Created at (more specific — human readable format)</th>
 			</tr>
 		</thead>
 		<tbody>
 			<% @users.each do |user| %>
 			<tr>
-				<td><%= user.first_name %></td>
-				<td><%= user.last_name %></td>
+				<td><%= user.name %></td>
 				<td><%= user.email %></td>
-				<td><%= time_ago_in_words user.created_at %></td>
+				<td><%= "#{time_ago_in_words user.created_at} ago" %></td>
+				<td><%= user.created_at.to_formatted_s(:long_ordinal) %></td>
 			</tr>
 			<% end %>
 		</tbody>
 	</table>
 
-</div>
+<%= link_to "Don't See yourself? Sign Up", new_user_path %>
