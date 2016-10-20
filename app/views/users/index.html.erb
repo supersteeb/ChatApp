@@ -10,7 +10,7 @@
 				<th>Full Name</th>
 				<th>Email</th>
 				<th>Created at</th>
-				<th>Created at (more specific — human readable format)</th>
+				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -18,8 +18,8 @@
 			<tr>
 				<td><%= user.name %></td>
 				<td><%= user.email %></td>
-				<td><%= "#{time_ago_in_words user.created_at} ago" %></td>
 				<td><%= user.created_at.to_formatted_s(:long_ordinal) %></td>
+				<td><%= link_to "Add Friend", add_friend_path(:friend_id => user), method: :post  %></td>
 			</tr>
 			<% end %>
 		</tbody>

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  
+  post 'add_friend' => 'friendships#create'
+  delete 'friendships/destroy'
+
 	resources :users
 	resources :sessions, only: [:new, :create]
 
