@@ -1,0 +1,59 @@
+<div class="col-sm-6">
+<h1><%= "Welcome #{current_user.name}!" %></h1>
+</div>
+<div class="inline">
+
+  <div class="col-sm-6">
+    <strong>Name:</strong>
+    <%= @user.name %>
+
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
+  </div>
+
+<div class="col-sm-6">
+<h3>Friends</h3>
+
+<ul>
+  <% for friendship in @user.friendships %>
+    <li>
+      <%=h friendship.friend.name %>
+      (<%= link_to "remove", friendships_destroy_path, :method => :delete %>)
+    </li>
+  <% end %>
+</ul>
+
+
+<%= link_to 'Find friends', users_path, class: "btn btn-secondary btn-sm" %>
+<%= link_to 'Messages', messages_path, class: "btn btn-secondary btn-sm" %>
+</div>
+
+<div class="col-sm-6">
+<h3>Friended by Users</h3>
+
+<table class="table col-sm-4">
+  <thead class="thead-inverse">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% for user in @user.inverse_friends %>
+  <tr>
+    <td><%=h user.name %></td>
+    <td><%=h user.email %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>
+
+
+
+
+</div>     
+
+

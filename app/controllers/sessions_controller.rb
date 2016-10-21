@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
+  
+  skip_before_action :authenticate, only: [:new, :create]
+
   def new
+    redirect_to user_path(:id) if user_signed_in? and return
   end
 
   def destroy
@@ -12,7 +16,7 @@ class SessionsController < ApplicationController
   def create
   	if @user = User.find_by(email: params[:email]) and @user.authenticate(params[:password])
   			session[:user_id] = @user.id
-  			redirect_to root_path, flash: {success: "Logged In"}
+  			redirect_to user_path(:id), flash: {success: "Logged In"}
   		else
   			flash.now[:error] = "Invalid username or password."
   			render 'new'

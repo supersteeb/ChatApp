@@ -5,7 +5,8 @@ class User < ApplicationRecord
 	has_many :friends, :through => :friendships
 	has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
 	has_many :inverse_friends, :through => :inverse_friendships, :source => :user
-	 	
+
+	has_many :messages, dependent: :destroy
 
 #	def authenticate(some_password)
 #		sth = encrypt some_password
@@ -20,6 +21,19 @@ class User < ApplicationRecord
 
 	def received_messages
 		Message.where(receipient_id: id)
+	end
+
+	def latest_received_messages(n)
+		received_messages.order(created_at: :desc).limit(n)
+	end
+
+	def unread_messages
+		received_messages.unread
+	end
+
+	def mark_as_read!
+		self.read_at = Time.now
+		save!
 	end
 	
 end
