@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 	root "home#index"
   
-  get 'messages/show' => 'messages#show"'
+  get 'messages/show' => 'messages#show'
 
 #  get '/friendships' => 'friendships#show'
  # post '/friendships' => 'friendships#create'

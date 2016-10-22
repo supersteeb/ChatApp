@@ -1,5 +1,6 @@
 <h3>Send New Message <h4>
 
+<%= link_to 'Back to Messages', received_user_messages_path, class: "btn btn-secondary" %>
+
 <%= render 'form', message: @message %>
 
-<%= link_to 'Back', messages_path %>

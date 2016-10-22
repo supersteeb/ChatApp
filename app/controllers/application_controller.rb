@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  before_action :authenticate
+ # before_action :authenticate
 
   helper_method :current_user, :user_signed_in?
 
@@ -14,16 +14,13 @@ class ApplicationController < ActionController::Base
   end
 
 
-  def authenticate
-    redirect_to new_session_path unless user_signed_in?
-  end
+ # def authenticate
+ #   redirect_to new_session_path unless
+#  end
 
 
   def user_signed_in?
     current_user != nil
-  end
-
-  def map
   end
 
 end

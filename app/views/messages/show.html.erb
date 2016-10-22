@@ -1,4 +1,21 @@
-<h1>Messages#show</h1>
-<p>Find me in app/views/messages/show.html.erb</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @message.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @message.body %>
+</p>
+
+<p> From
+	<strong>Sender:</strong>
+	<%= @message.sender.name %>
+
+	To: <%= @message.recipient.name %>
+	</p>
 
 
+
+<%= link_to 'Back to Messages', received_user_messages_path, class: "btn btn-secondary" %>

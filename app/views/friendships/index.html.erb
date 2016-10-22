@@ -3,6 +3,7 @@
 <table class="table col-sm-4">
   <thead class="thead-inverse">
     <tr>
+      <th>Friendship ID</th>
       <th>Friend Id</th>
       <th>Name</th>
       <th>Email</th>
@@ -11,17 +12,20 @@
     </tr>
   </thead>
   <tbody>
-  <% for friendship in @user.friendships do %>
-  <tr>
-    <td><%=h friendship.friend.id %></td>
-    <td><%=h friendship.friend.name %></td>
-    <td><%=h friendship.friend.email %></td>
-    <td>(<%= link_to "remove", friendship_path(friendship), :method => :delete, data: { confirm: 'Are you sure?' }  %>)</td>
-  </tr>
+  <% for friendship in @user.friendships %>
+    <tr>
+      <td><%=h friendship.id %></td>
+      <td><%=h friendship.friend.id %></td>
+      <td><%=h friendship.friend.name %></td>
+      <td><%=h friendship.friend.email %></td>
+      <td>(<%= link_to "remove", friendship, :method => :delete, data: { confirm: 'Are you sure?' }  %>)</td>
+    </tr>
   <% end %>
   </tbody>
 </table>
+
 <%= link_to 'Find friends', users_path, class: "nav-item btn btn-primary" %>
+<%= link_to 'Back to messages', received_user_messages_path(current_user), class: "nav-item btn btn-primary" %>
 
-<%= link_to 'View friends', friendship_path, class: "nav-item btn btn-primary" %>
-
+<%#
+<%= link_to 'View friends', friendship_path(:user_id), class: "nav-item btn btn-primary" %>

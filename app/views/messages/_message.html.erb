@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-sm-8">
+      <div class="card">
+
+        <div class="card-block">
+          <h4 class="card-title">
+          <%= link_to message.title %> 
+<!-- supposed to go to messages/id where id = message_id-->
+          </h4>
+          <p class="card-text">
+            <%= message.body %> 
+          </p>
+        </div>
+
+        <div class="card-footer">
+          From: <%= message.sender.name %> 
+          To: <%= message.recipient.name %>
+        </div>
+      </div>
+  </div>
+</div>

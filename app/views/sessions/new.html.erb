@@ -1,15 +1,21 @@
 <h1>Login</h1>
 
+
+
 <div class="form">
 <%= form_tag sessions_path, method: 'post' do %>
-<div class="div">
+<div class="">
 	<%= label_tag :email %>
 	<%= text_field_tag :email %>
 </div>
-<div class="div">
+<div class="">
 	<%= label_tag :password %>
 	<%= password_field_tag :password %>
 </div>
 	<%= submit_tag 'Login' %>
 <% end %>
 </div>
+
+<nav class="nav nav-inline">
+Don't have an account? <%= link_to "Sign Up", new_user_path, class: "btn btn-primary" %>
+</nav>

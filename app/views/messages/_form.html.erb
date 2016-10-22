@@ -1,20 +1,20 @@
 
-<div class="card">
+<div class="card col-sm-6">
 	<div class="card-block">
 		<div class="row">
 
-			<%= form_for @user, url: new_user_message_path do |f| %>
-				<div class="field">
+			<%= form_for [@user, @message] do |f| %>
+				<div class="form-control">
 				  <%= f.label :recipient_id %>
 				  <%= f.select :recipient_id, @users.map {|u| [u.email, u.id]} %>
 				</div>
 				  
-				<div class="field">
+				<div class="form-control">
 				  <%= f.label :body %>
 				  <%= f.text_field :body %>
 				</div>
 
-				  <%= f.submit "Send Message", user_messages_path, method: :post, class: 'btn btn-primary' %>
+				  <%= f.submit "Send Message", class: 'btn btn-primary' %>
 			<% end %>
 		</div>
 	</div>

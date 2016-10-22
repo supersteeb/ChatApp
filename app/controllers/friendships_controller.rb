@@ -1,9 +1,11 @@
 class FriendshipsController < ApplicationController
-  before_action :authenticate
+#  before_action :authenticate
 
+#  @friendships = Friendship.all
 #  @users = User.inverse_friends(:current_user)
   def index
-  
+    @user = current_user
+    @friendships = Friendship.all
   end
 
   def create
@@ -22,6 +24,6 @@ class FriendshipsController < ApplicationController
   	@friendship = current_user.friendships.find(params[:id]) #this supposed to find the friendship by the parameters friend_id. 
   	@friendship.delete
   	flash[:notice] = "Successfully removed (now former) friend."
-  	redirect_to user_path
+  	redirect_to friendships_path
   end
 end
