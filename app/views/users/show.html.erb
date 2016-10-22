@@ -1,36 +1,54 @@
-<div class="col-sm-6">
+<div class="container">
+<div class="col-sm-3">
 <h1><%= "Welcome #{current_user.name}!" %></h1>
+
+<%= link_to 'Messages', user_messages_path, class: "nav-item btn btn-primary" %>
 </div>
-<div class="inline">
 
   <div class="col-sm-6">
     <strong>Name:</strong>
     <%= @user.name %>
 
-  <p>
+    <p>
     <strong>Email:</strong>
     <%= @user.email %>
-  </p>
+    </p>
   </div>
 
 <div class="col-sm-6">
 <h3>Friends</h3>
 
-<ul>
+<table class="table col-sm-4">
+  <thead class="thead-inverse">
+    <tr>
+      <th>Friendship ID</th>
+      <th>Friend Id</th>
+      <th>Name</th>
+      <th>Email</th>
+
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
   <% for friendship in @user.friendships %>
-    <li>
-      <%=h friendship.friend.name %>
-      (<%= link_to "remove", friendships_destroy_path, :method => :delete %>)
-    </li>
+  <tr>
+    <td><%=h friendship.id %></td>
+    <td><%=h friendship.friend.id %></td>
+    <td><%=h friendship.friend.name %></td>
+    <td><%=h friendship.friend.email %></td>
+    <td>(<%= link_to "remove", friendship_path(friendship), :method => :delete, data: { confirm: 'Are you sure?' }  %>)</td>
+  </tr>
   <% end %>
-</ul>
+  </tbody>
+</table>
+<%= link_to 'Find friends', users_path, class: "nav-item btn btn-primary" %>
 
-
-<%= link_to 'Find friends', users_path, class: "btn btn-secondary btn-sm" %>
-<%= link_to 'Messages', messages_path, class: "btn btn-secondary btn-sm" %>
+<%= link_to 'View friends', user_friendships_path, class: "nav-item btn btn-primary" %>
 </div>
 
-<div class="col-sm-6">
+
+
+<div class="col-sm-4">
 <h3>Friended by Users</h3>
 
 <table class="table col-sm-4">
@@ -49,11 +67,9 @@
   <% end %>
   </tbody>
 </table>
+
+
+
+
 </div>
-
-
-
-
-</div>     
-
 

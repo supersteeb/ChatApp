@@ -1,12 +1,12 @@
 class User < ApplicationRecord
 	has_secure_password
 
-	has_many :friendships
-	has_many :friends, :through => :friendships
+	has_many :friendships, dependent: :destroy #user has many friendships which can be deleted/destroyed
+	has_many :friends, :through => :friendships #cannot delete the friend, but can delete the friendship
 	has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
 	has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
-	has_many :messages, dependent: :destroy
+	has_many :messages
 
 #	def authenticate(some_password)
 #		sth = encrypt some_password
@@ -20,7 +20,7 @@ class User < ApplicationRecord
 	end
 
 	def received_messages
-		Message.where(receipient_id: id)
+		Message.where(receipient: self)
 	end
 
 	def latest_received_messages(n)

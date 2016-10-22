@@ -1,18 +1,28 @@
 class MessagesController < ApplicationController
   def index
-    @user = User.find params[:user_id]
+    #@messages = User.where(:user_id => current_user.id).order("created_at DESC") #trying to if current_user is user logged in, then view only messages in which current_user is recipient. 
+    @messages = Message.all.order('created_at desc')
+  end
+
+  def new
+    @message = Message.new
+    @user = current_user
+    @recipients = User.all
+    @users = User.all
   end
 
   def create
-  	@user = User.find params[:user_id]
+  	@user = User.find(params[:user_id])
   	@message = User.sent_messages.build message_params
-=begin
+
   	if @messages.save
-  		...
+      flash[:success] = "Message Sent!"
+      redirect_to user_path(:id)
   	else
-  		...
+  		flash[:alert] = "Great Scott!"
+      render 'new'
   	end
-=end
+
 
   end
 

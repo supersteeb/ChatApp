@@ -1,9 +1,5 @@
 <h3>Send New Message <h4>
 
-<%= form_for [@user, @message] do |f| %>
-  <%= f.label :recipient_id %>
-  <%= f.select :recipient_id, @users.map{|u| [u.email, u.id]} %>
-  
-  <%= f.label :body %>
-  <%= f.text_field :body %>
-<% end %>
+<%= render 'form', message: @message %>
+
+<%= link_to 'Back', messages_path %>

@@ -25,27 +25,3 @@
 
 <%= link_to 'View friends', friendship_path, class: "nav-item btn btn-primary" %>
 
-<div class="col-sm-4">
-<h3>Friended by Users</h3>
-
-<table class="table col-sm-4">
-  <thead class="thead-inverse">
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% for user in @user.inverse_friends %>
-  <tr>
-    <td><%=h user.name %></td>
-    <td><%=h user.email %></td>
-  </tr>
-  <% end %>
-  </tbody>
-</table>
-
-
-
-
-</div>

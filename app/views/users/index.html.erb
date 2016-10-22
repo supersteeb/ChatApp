@@ -19,10 +19,8 @@
 				<td><%= user.name %></td>
 				<td><%= user.email %></td>
 				<td><%= user.created_at.to_formatted_s(:long_ordinal) %></td>
-				<td><%= link_to "Add Friend", add_friend_path(:friend_id => user), method: :post  %></td>
+				<td><%= link_to "Add Friend", user_friendships_path(:friend_id => user), method: :post  %></td>
 			</tr>
 			<% end %>
 		</tbody>
 	</table>
-
-<%= link_to "Don't See yourself? Sign Up", new_user_path %>

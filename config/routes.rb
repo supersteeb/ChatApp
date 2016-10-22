@@ -1,21 +1,28 @@
 Rails.application.routes.draw do
 	root "home#index"
   
-  get 'messages/show'
+  get 'messages/show' => 'messages#show"'
 
-  post 'add_friend' => 'friendships#create'
-  delete 'friendships/destroy'
+#  get '/friendships' => 'friendships#show'
+ # post '/friendships' => 'friendships#create'
+  #delete '/friendships' => 'friendships#destroy'
 
-	resources :users
+#  post 'add_friend' => 'friendships#create'
+#  delete 'delete_friend' => 'friendships#destroy'
+	
+	resources :friendships
+	
 	resources :sessions, only: [:new, :create]
 
-	resources :messages do
-		collection do
-			get :sent
-			get :received
-		end
-		member do
-			get 'mark_as_unread'
+	resources :users do
+		resources :messages do
+			collection do
+				get :sent
+				get :received
+			end
+			member do
+				get 'mark_as_unread'
+			end
 		end
 	end
 

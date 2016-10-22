@@ -23,5 +23,7 @@ class ApplicationController < ActionController::Base
     current_user != nil
   end
 
+  def map
+  end
 
 end
