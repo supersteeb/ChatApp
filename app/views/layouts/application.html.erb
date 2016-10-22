@@ -14,7 +14,7 @@
       	<div class="alert alert-info">
       		Welcome, <%= current_user.name %>. Not you?
           <%= link_to "Log out", logout_path, method: 'delete' %> |
-          <%= link_to "View Messages", user_messages_path(current_user) %>
+          <%= link_to "Home Home", user_messages_path(current_user) %>
       	</div>
       <% else %>
         <% link_to "Log in", new_session_path %>

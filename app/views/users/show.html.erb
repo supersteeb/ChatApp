@@ -2,7 +2,7 @@
 <div class="col-sm-3">
 <h1><%= "Welcome #{current_user.name}!" %></h1>
 
-<%= link_to 'Messages', user_messages_path, class: "nav-item btn btn-primary" %>
+<%= link_to 'Messages', user_messages_path(:id), class: "nav-item btn btn-primary" %>
 </div>
 
   <div class="col-sm-6">
@@ -43,7 +43,7 @@
 </table>
 <%= link_to 'Find friends', users_path, class: "nav-item btn btn-primary" %>
 
-<%= link_to 'View friends', user_friendships_path, class: "nav-item btn btn-primary" %>
+<%= link_to 'View friends', friendships_path, class: "nav-item btn btn-primary" %>
 </div>
 
 
