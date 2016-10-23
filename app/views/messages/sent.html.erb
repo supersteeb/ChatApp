@@ -1,11 +1,18 @@
+<ul class="nav nav-pills nav-stacked col-sm-4" >
+  <li class="nav-item">
+    <%= link_to "Received Messages", received_user_messages_path, class: "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Sent Messages", sent_user_messages_path, class: "nav-link active" %>
+  </li>
+
+</ul>
+
 <ul class="nav nav-pills">
   <li class="nav-item">
   	<%= link_to "New Message", new_user_message_path, class: "nav-link" %>
   </li>
-  <li class="nav-item">
-    <%= link_to 'Back to messages', received_user_messages_path, class: "nav-link" %>
 
-  </li>
   <li class="nav-item">
   	<%= link_to "Find friends", users_path, class: "nav-link" %>
   </li>
@@ -15,5 +22,5 @@
 </ul>
 
 
-<%= render @messages %>
+<%= render @messages %> <%#, class: "#{strong if !!@message.read?}" %>
 

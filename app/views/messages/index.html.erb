@@ -15,7 +15,9 @@
 
 <%= render @messages %>
 
-
+<% if message.read_at == nil %>
+<strong><%= message.last.content> </strong>
+<% end %>
 
 
 

@@ -13,10 +13,11 @@ class MessagesController < ApplicationController
 
   def create
   	@user = User.find(params[:user_id])
-  	@message = Message.sent_messages.build message_params
-  #  @message.sender_id = current_user
+   # @message = Message.new
+  #  @message.sender_id = current_user.id
+  	@message = @user.sent_messages.build message_params
 
-  	if @messages.save
+  	if @message.save
       flash[:success] = "Message Sent!"
       redirect_to received_user_messages_path
   	else
@@ -27,14 +28,14 @@ class MessagesController < ApplicationController
 
   def show
   	@message = Message.find(params[:id])
-  	if @message.read? && current_user == @message.recipient
+  	if !@message.read? && current_user == @message.recipient
   		@message.mark_as_read!
   	end
   end
 
   def sent
   	load_user
-  	@messages = @user.sent_messages
+  	@messages = @user.sent_messages.order("created_at DESC")
   end
 
   def received
@@ -63,7 +64,7 @@ class MessagesController < ApplicationController
   private
   
   def message_params
-  	params.require(:message).permit(:recipient_id, :body)
+  	params.require(:message).permit(:recipient_id, :title, :body)
   end
 
 

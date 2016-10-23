@@ -1,6 +1,13 @@
 <h3>Send New Message <h4>
 
-<%= link_to 'Back to Messages', received_user_messages_path, class: "btn btn-secondary" %>
+<ul class="nav nav-pills nav-stacked col-sm-4" >
+  <li class="nav-item">
+    <%= link_to "Back to Messages", received_user_messages_path, class: "nav-link btn btn-secondary" %>
+  </li>  
+  <li class="nav-item">
+    <%= link_to "Sent Messages", sent_user_messages_path, class: "nav-link btn btn-secondary	" %>
+  </li>
+</ul>
 
 <%= render 'form', message: @message %>
 

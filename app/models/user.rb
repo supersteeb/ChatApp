@@ -17,7 +17,7 @@ class User < ApplicationRecord
 	validates :name, presence: true
 
 	def sent_messages
-		Message.where(sender: self)
+		Message.where(sender: self) #because you want the sent messages for the current user
 	end
 
 	def received_messages

@@ -4,17 +4,39 @@
 
         <div class="card-block">
           <h4 class="card-title">
-          <%= link_to message.title %> 
-<!-- supposed to go to messages/id where id = message_id-->
+
+    <!-- if recipient id == current_user, then it's link_to messages#show --> 
+      <% if message.recipient_id == current_user.id && message.read_at == nil %>
+          <%= link_to message.title, user_message_path(id: message.id) %>
+          <% else %>
+          <%= message.title %>
+          <% end %> 
+<!-- ^^ supposed to go to messages/id where id = message_id-->
           </h4>
           <p class="card-text">
-            <%= message.body %> 
+            <% if message.read_at == nil %>
+            <strong><%= message.body %> </strong>
           </p>
+            <% else %>
+            <%= message.body %>
+             <% end %>
         </div>
+           
 
         <div class="card-footer">
-          From: <%= message.sender.name %> 
-          To: <%= message.recipient.name %>
+          <% if message.recipient_id == current_user.id %> 
+            From: <%= message.sender.name %> 
+          <% else %>
+            To: <%= message.recipient.name %>
+          <% end %>
+
+
+          Read at: <% if message.read_at == nil %>
+          <strong> unread </strong>
+          <% else %>
+          <%= message.read_at %>
+          <% end %>
+
         </div>
       </div>
   </div>

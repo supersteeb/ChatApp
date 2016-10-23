@@ -1,31 +1,64 @@
-<h3>Friends</h3>
+<div class="nav nav-inline">
 
-<table class="table col-sm-4">
-  <thead class="thead-inverse">
+<%= link_to 'Find friends', users_path, class: "nav-item btn btn-secondary" %>
+<%= link_to 'Back to messages', received_user_messages_path(current_user), class: "nav-item btn btn-secondary" %>
+
+</div>
+
+<div class="col-lg-12">
+
+
+
+<div class="col-sm-8">
+  <h3>Following</h3>
+  <table class="table col-sm-8">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Friend Id</th>
+        <th>Name</th>
+        <th>Email</th>
+
+        <th> </th>
+      </tr>
+    </thead>
+    <tbody>
+    <% for friendship in @user.friendships %>
+      <tr>
+        <td><%=h friendship.friend.id %></td>
+        <td><%=h friendship.friend.name %></td>
+        <td><%=h friendship.friend.email %></td>
+        <td>(<%= link_to "Unfollow", friendship, :method => :delete, data: { confirm: 'Are you sure?' }  %>)</td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+
+<div class="col-sm-4">
+  <h3>Followers</h3>
+  <table class="table col-sm-4">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% for user in @user.inverse_friends %>
     <tr>
-      <th>Friendship ID</th>
-      <th>Friend Id</th>
-      <th>Name</th>
-      <th>Email</th>
-
-      <th> </th>
+      <td><%=h user.name %></td>
+      <td><%=h user.email %></td>
     </tr>
-  </thead>
-  <tbody>
-  <% for friendship in @user.friendships %>
-    <tr>
-      <td><%=h friendship.id %></td>
-      <td><%=h friendship.friend.id %></td>
-      <td><%=h friendship.friend.name %></td>
-      <td><%=h friendship.friend.email %></td>
-      <td>(<%= link_to "remove", friendship, :method => :delete, data: { confirm: 'Are you sure?' }  %>)</td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+    <% end %>
+    </tbody>
+  </table>
+</div>
 
-<%= link_to 'Find friends', users_path, class: "nav-item btn btn-primary" %>
-<%= link_to 'Back to messages', received_user_messages_path(current_user), class: "nav-item btn btn-primary" %>
+</div>
+
+
 
 <%#
 <%= link_to 'View friends', friendship_path(:user_id), class: "nav-item btn btn-primary" %>

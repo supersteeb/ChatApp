@@ -4,6 +4,13 @@ class Message < ApplicationRecord
 
 	scope :unread, -> {where(read_at: nil)}
 
+=begin
+			Don't know if below is supposed to be there
+=end
+	def sent_messages
+		Message.where(sender: self)
+	end
+
 
 	def mark_as_read!
 		self.read_at ||= Time.now
