@@ -1,12 +1,12 @@
-# Homework 2 - *Name of App*
+# Homework 2 - *ChatApp*
 
-**Name of your app** is a Ruby on Rails blog application that allows users to send messages to each other that can only be read once.
+**ChatApp** is a Ruby on Rails blog application that allows users to send messages to each other that can only be read once.
 
 Submitted by: **Steve Cho**
 
 Time spent: xx50+xx hours (mostly reading, looking at tutorials, etc)
 
-URL: **Insert your Heroku URL here**
+URL: **https://assign-2.herokuapp.com/**
 
 ## User Stories
 
@@ -39,6 +39,8 @@ The following **optional** functionality is complete:
 The following **additional** features are implemented:
 
 - [ ] (List anything else that you can get done to improve the app functionality!)
+
+- I could create conversations model and have a more convenient view of many messages with one user. 
 
 ## Video Walkthrough 
 
